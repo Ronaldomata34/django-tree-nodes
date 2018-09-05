@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div>Object's name: {{ node.name }}</div>
+	{% if node.parent %}
+		<div>Object's parent: {{ node.parent }}</div>
+	{% else %}
+		<div>Object's parent: it doesn't has parent</div>
+	{% endif %}
+	<br>
+	<a href="{% url 'nodes:node_list' %}">See Tree</a> |
+	<a href="{% url 'nodes:node_delete' node.pk %}">Delete this Object</a> |
+	<a href="{% url 'nodes:node_update' node.pk %}">Update Position on The Tree</a>
+{% endblock content %}

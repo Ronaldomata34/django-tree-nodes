@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load mptt_tags %}
+<ul class="root">
+    {% recursetree nodes %}
+        <li>
+            <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    <a href="{{ children.get_absolute_url }}">{{ children }}</a>
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+
+<a href="{% url 'nodes:node_create' %}"> Create New Object</a>
+{% endblock content %}
+    
